@@ -50,33 +50,33 @@ const Hero: React.FC = () => {
           {/* =============================================================================== */}
 
 
-          {/* ===== SECCIÓN CTA MEJORADA v2 ===== */}
-          {/* Fondo más oscuro y limpio, borde sutil, más padding */}
+          {/* ===== SECCIÓN CTA CON TEXTO FINAL ===== */}
+          {/* Mantenemos el estilo visual de v2 */}
           <div className="bg-gray-950 rounded-2xl p-10 md:p-12 lg:p-16 mb-12 border border-gray-800 shadow-2xl max-w-3xl mx-auto">
-            {/* Texto "Special Launch Price" más pequeño */}
-            <p className="text-lg font-medium text-gray-400 mb-2">
-              Special Launch Price:
+            
+            {/* Texto Principal del CTA */}
+            <p className="text-2xl md:text-3xl font-semibold text-gray-300 mb-3 uppercase tracking-wider">
+              Get Instant Access For
             </p>
-            {/* Precio Principal - Más grande, color más vibrante */}
-            <div className="text-5xl md:text-6xl font-extrabold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-500">
+            {/* Precio */}
+            <div className="text-5xl md:text-6xl font-extrabold mb-8 text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-500">
               $11.11
             </div>
-            {/* Texto de Ahorro - Legible pero secundario */}
-            <p className="text-lg md:text-xl text-gray-400 mb-10">
-              Save $85.89 Today - Regular Price <span className="line-through">$97</span>
-            </p>
-            {/* Botón Premium - Gradiente, sombra más fuerte, hover mejorado */}
+            
+            {/* Botón con nuevo texto */}
             <Button 
               primary 
-              className="group text-xl font-bold px-12 py-5 
+              className="group text-lg font-semibold px-10 py-4 
                          bg-gradient-to-r from-orange-500 to-red-600 
                          hover:from-orange-600 hover:to-red-700 
                          text-white rounded-xl shadow-[0_10px_20px_rgba(245,_158,_11,_0.4)] 
                          hover:shadow-[0_15px_30px_rgba(245,_158,_11,_0.5)]
                          transition-all duration-300 ease-in-out transform hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-orange-300/50"
             >
-              Get Instant Access Now
-              <ArrowRight className="ml-3 h-6 w-6 transform transition-transform duration-300 group-hover:translate-x-2" />
+              {/* Texto del botón actualizado */}
+              Get Your Digital Copy (And Bonuses) Now!
+              {/* Mantenemos el icono de flecha */}
+              <ArrowRight className="ml-3 h-5 w-5 transform transition-transform duration-300 group-hover:translate-x-1.5" />
             </Button>
           </div>
           {/* ================================= */}
