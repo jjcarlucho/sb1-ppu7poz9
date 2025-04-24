@@ -1,53 +1,29 @@
-import React, { useEffect, useRef } from 'react';
-import VimeoPlayer from '@vimeo/player'; // Importar el reproductor
+import React from 'react';
 
+// Nota: Ya no necesitamos las props videoId/videoHash aquí, 
+// pero las dejamos por si Hero.tsx las sigue pasando, para no causar error allí.
+// El ID real está dentro del código iframe que pegaste.
 interface VideoPlayerProps {
-  videoId: string; 
-  videoHash?: string; 
+  videoId: string;
+  videoHash?: string;
 }
 
 const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoId, videoHash }) => {
-  const playerContainerRef = useRef<HTMLDivElement>(null); 
-
-  useEffect(() => {
-    if (playerContainerRef.current) {
-      let playerInstance: VimeoPlayer | null = null;
-      try {
-        const options = {
-          id: parseInt(videoId, 10),
-          hash: videoHash,
-          width: 640, 
-          controls: true // Empezamos mostrando controles para ver si carga
-        };
-        console.log("Intentando inicializar Vimeo Player con:", options); 
-        playerInstance = new VimeoPlayer(playerContainerRef.current, options);
-
-        playerInstance.ready().then(() => {
-          console.log("Vimeo Player ¡LISTO!");
-        }).catch(error => {
-          console.error("Error en player.ready():", error);
-        });
-        playerInstance.on('error', (error) => {
-           console.error('Error del Player de Vimeo:', error);
-        });
-      } catch (error) {
-         console.error("Error al crear instancia de Vimeo Player:", error);
-      }
-      return () => {
-        if (playerInstance) {
-          console.log("Destruyendo instancia de Vimeo Player");
-          playerInstance.destroy().catch(error => console.error("Error al destruir:", error));
-        }
-      };
-    } else {
-        console.warn("Referencia del contenedor de Vimeo no encontrada.");
-    }
-  }, [videoId, videoHash]); 
-
+  // Directamente devolvemos la estructura con el iframe de Vimeo
+  // Usamos Tailwind para el aspect ratio en lugar del div con padding style
   return (
-    <div className="relative w-full aspect-video rounded-xl overflow-hidden bg-gray-800">
-      <div ref={playerContainerRef}></div> 
-      <p className="absolute inset-0 flex items-center justify-center text-white opacity-50">Cargando Player...</p> 
+    <div className="relative w-full aspect-video rounded-xl overflow-hidden bg-black">
+      {/* El código iframe que pegaste de Vimeo, adaptado a JSX */}
+      <iframe 
+        src="https://player.vimeo.com/video/1078146633?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" 
+        frameBorder="0" // 'frameborder' cambiado a 'frameBorder'
+        allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" 
+        allowFullScreen // 'allowfullscreen' cambiado a 'allowFullScreen'
+        style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} // 'style' string convertido a objeto
+        title="VSL JONATHAN(1) (1)" // Título del iframe
+      ></iframe>
+      {/* Nota: El <script src="https://player.vimeo.com/api/player.js"></script> que venía
+          con el código de Vimeo no es necesario aquí porque no estamos usando la API avanzada */}
     </div>
   );
 };
