@@ -16,12 +16,14 @@ const Hero: React.FC = () => {
             <span>For Coaches, Consultants & Service Providers Looking To Scale To 7 Figures In 2025</span>
           </div>
           
+          {/* ===== TITULAR MODIFICADO ===== */}
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 bg-gradient-to-r from-white via-gray-100 to-gray-300 text-transparent bg-clip-text">
-            Write A Short Book, Sell 50-100 Copies Per Day & Scale To 7 Figures
+            The System For Coaches: Write Your Book & Scale To 6-7 Figures
           </h1>
           
+          {/* ===== SUBTÍTULO MODIFICADO (SOLO LA PRIMERA PALABRA) ===== */}
           <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-4xl mx-auto">
-            Install This Counterintuitive New Marketing System That Coaches And Experts Are Using To Scale Their Business
+            Discover This Counterintuitive New Marketing System That Coaches And Experts Are Using To Scale Their Business
             <span className="block mt-4 text-orange-500">...Without Wasting Thousands On Ads, Posting Content Every Day, Or Sending Cold DMs - Or Your Money Back!</span>
           </p>
 
