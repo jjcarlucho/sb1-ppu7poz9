@@ -2,23 +2,17 @@ import React from 'react';
 import { Check, X } from 'lucide-react'; // Importar iconos
 
 const Story: React.FC = () => {
-  // ===> REEMPLAZA ESTA URL por la de tu imagen <===
-  // Busca una imagen horizontal (aprox 1200x600 o similar) que represente el viaje, la escritura, o el coaching.
-  // Puedes usar sitios como Pexels, Unsplash (revisa licencias) o una imagen propia.
-  const storyImageUrl = "https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"; // Ejemplo de Pexels (trabajo en equipo/ideas)
-  const placeholderImageUrl = "https://placehold.co/1200x600/1A1A1A/E0E0E0?text=Your+Transformative+Journey"; // Placeholder si la imagen principal falla
+  // Ya no necesitamos la variable de la imagen
 
   return (
-    // Reducimos padding superior a pt-0 y añadimos un margen negativo pequeño si es necesario (ej: -mt-4 o -mt-8)
-    // Lo dejamos en pt-0 por ahora, ajustar -mt si se necesita más cercanía.
-    <section className="pt-0 pb-20 bg-[#0a0a0a] text-white"> 
+    // Reducimos padding a pt-0 y añadimos margen superior NEGATIVO para acercarlo más al CTA
+    <section className="pt-0 -mt-8 pb-20 bg-[#0a0a0a] text-white"> {/* Ajusta -mt-8 si es necesario */}
       <div className="container mx-auto px-4 md:px-8">
         {/* Contenedor principal del texto */}
         <div className="max-w-3xl mx-auto space-y-8"> 
           
           {/* --- Introducción --- */}
           <div>
-            {/* Ajustamos tamaño de fuente y leading */}
             <p className="text-lg md:text-xl text-gray-300 leading-relaxed mb-6">
               How to make more money from every page you write without losing your passion or resorting to jobs you hate just to pay the bills.
               It's a strategy I developed that helps you captivate even the most skeptical readers... and guide them to whatever offer you have.
@@ -41,24 +35,9 @@ const Story: React.FC = () => {
             <p className="text-lg md:text-xl text-gray-300 leading-relaxed mb-6">
               I started off totally clueless about digital entrepreneurship. I was trapped in a soul-sucking corporate job for years. It wasn't until I decided to write my first book that I got thrust into the world of online business.
             </p>
-            
-            {/* ===== Imagen Insertada ===== */}
-            <div className="my-10 md:my-12 rounded-lg overflow-hidden shadow-xl border border-gray-800">
-               <img 
-                 src={storyImageUrl} 
-                 alt="Entrepreneurial journey illustration" // Alt descriptivo
-                 className="w-full h-auto object-cover" // Asegura que cubra bien
-                 loading="lazy" 
-                 onError={(e) => { 
-                   // Fallback a una imagen placeholder si la principal falla
-                   const target = e.target as HTMLImageElement;
-                   target.src = placeholderImageUrl; 
-                   target.alt = "Image placeholder"; 
-                 }}
-               />
-            </div>
+            {/* ===== Imagen Eliminada ===== */}
+            {/* Ya no está el div con la <img> aquí */}
             {/* ========================== */}
-
             <p className="text-lg md:text-xl text-gray-300 leading-relaxed mb-6">
               I was forced to get good at it fast because I left my corporate job the day after my book was published.
             </p>
@@ -107,7 +86,6 @@ const Story: React.FC = () => {
           <div className="bg-gray-900/60 border border-gray-700/50 rounded-2xl p-8 md:p-10 mt-16 shadow-lg">
             <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center text-white">Is This Really For You?</h2>
             <div className="space-y-6 text-lg md:text-xl text-gray-300 leading-relaxed">
-               {/* ... (párrafos sin cambios) ... */}
                <p>Even as I say this...</p>
                <p>Honestly, I can't say for sure...</p>
                <p>But just the fact that you're here...</p>
@@ -129,9 +107,14 @@ const Story: React.FC = () => {
           <div className="bg-gradient-to-br from-blue-900/20 via-purple-900/10 to-gray-900/20 border border-gray-700/50 rounded-2xl p-8 md:p-10 mt-16 shadow-lg">
              <h2 className="text-3xl md:text-4xl font-bold mb-10 text-center text-white">The Crossroads: Which Path Will You Choose?</h2>
             <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
-               {/* ... (contenido de las dos columnas sin cambios) ... */}
-               <div className="space-y-4 border border-red-500/20 bg-red-900/10 p-6 rounded-lg"> {/* Path 1 */} </div>
-               <div className="space-y-4 border border-green-500/20 bg-green-900/10 p-6 rounded-lg"> {/* Path 2 */} </div>
+               <div className="space-y-4 border border-red-500/20 bg-red-900/10 p-6 rounded-lg"> {/* Path 1 */} 
+                 <h3 className="text-2xl font-semibold text-red-400 mb-4">The Path You Know</h3>
+                 {/* ... lista ... */}
+               </div>
+               <div className="space-y-4 border border-green-500/20 bg-green-900/10 p-6 rounded-lg"> {/* Path 2 */} 
+                 <h3 className="text-2xl font-semibold text-green-400 mb-4">The New Path to Freedom</h3>
+                 {/* ... lista ... */}
+               </div>
             </div>
           </div>
 
