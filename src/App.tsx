@@ -1,30 +1,24 @@
 import React from 'react';
-import Header from './components/Header';
 import Hero from './components/Hero';
 import Story from './components/Story';
 import Benefits from './components/Benefits';
-import Testimonials from './components/Testimonials';
+import Decision from './components/Decision';
 import Pricing from './components/Pricing';
-import FAQ from './components/FAQ';
-import Guarantee from './components/Guarantee';
-import CTABanner from './components/CTABanner';
+import FinalCTA from './components/FinalCTA.tsx';
+import Footer from './components/Footer';
 
-function App() {
+const App: React.FC = () => {
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
-      <Header />
-      <main>
-        <Hero />
-        <Story />
-        <Benefits />
-        <Testimonials />
-        <Pricing />
-        <FAQ />
-        <Guarantee />
-        <CTABanner />
-      </main>
+    <div className="w-full">
+      <Hero />
+      <Story />
+      <Benefits />
+      <Decision />
+      <Pricing />
+      <FinalCTA />
+      <Footer />
     </div>
   );
-}
+};
 
 export default App;

@@ -1,115 +1,168 @@
-import React from 'react';
-import { Button } from './Button';
-import { CheckCircle, Clock, Gift } from 'lucide-react';
-
-const bonuses = [
-  {
-    title: 'AI Tools Checklist',
-    value: '$50',
-    description: 'A comprehensive guide to the best AI tools for content creation and marketing.',
-    image: 'https://images.pexels.com/photos/4238488/pexels-photo-4238488.jpeg'
-  },
-  {
-    title: 'Your Wish Is Your Command Audios',
-    value: '$500',
-    description: 'Legendary mindset and manifestation audios for business success.',
-    image: 'https://images.pexels.com/photos/4064840/pexels-photo-4064840.jpeg'
-  },
-  {
-    title: 'TFT Course',
-    value: '$300',
-    description: 'Release subconscious blocks and emotions that sabotage your progress.',
-    image: 'https://images.pexels.com/photos/3760529/pexels-photo-3760529.jpeg'
-  }
-];
+import React, { useEffect } from 'react';
 
 const Pricing: React.FC = () => {
+  const bonuses = [
+    {
+      title: "Your Wish Is Your Command Audios",
+      value: "$500",
+      description: "Legendary mindset and manifestation audios.",
+      image: "https://images.pexels.com/photos/4064840/pexels-photo-4064840.jpeg?auto=compress&cs=tinysrgb&w=400"
+    },
+    {
+      title: "TFT Course",
+      value: "$300",
+      description: "Release subconscious blocks and emotions.",
+      image: "https://images.pexels.com/photos/3760529/pexels-photo-3760529.jpeg?auto=compress&cs=tinysrgb&w=400"
+    }
+  ];
+
+  const totalBonusValue = bonuses.reduce((sum, bonus) => {
+    return sum + parseInt(bonus.value.replace('$', ''), 10);
+  }, 0);
+
+  React.useEffect(() => {
+    const regularPrice = (11.11 * 2).toFixed(2);
+    const originalPrice = (11.11 + 200).toFixed(2);
+    
+    const regularPriceElement = document.getElementById('regularPrice');
+    const regularPrice2Element = document.getElementById('regularPrice2');
+    const originalPriceElement = document.getElementById('originalPrice');
+    
+    if (regularPriceElement) {
+      regularPriceElement.textContent = `$${regularPrice}`;
+    }
+    if (regularPrice2Element) {
+      regularPrice2Element.textContent = `$${regularPrice}`;
+    }
+    if (originalPriceElement) {
+      originalPriceElement.textContent = `$${originalPrice}`;
+    }
+  }, []);
+
   return (
-    <section className="py-20 bg-[#0a0a0a]">
-      <div className="container mx-auto px-4 md:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center bg-red-500/10 text-red-500 px-4 py-2 rounded-full mb-6">
-            <Clock className="h-4 w-4 mr-2 animate-pulse" />
-            <span className="text-sm font-semibold">Special Offer Ends Soon</span>
+    <section id="offer" className="py-20 bg-gradient-to-br from-blue-900 via-indigo-900 to-purple-900 text-white">
+      <div className="container mx-auto px-4">
+        <div className="max-w-4xl mx-auto">
+          {/* Pricing Introduction */}
+          <div className="text-center space-y-6 mb-12">
+            <p className="text-xl">
+              Initially, I felt I should charge at least enough to cover the effort that went in.
+            </p>
+            
+            <p className="text-xl">
+              At even just <span id="regularPrice" className="font-bold">[[calculate 11.11 multiplied by 2. Show the result]]</span>, I believe you'll find it more than fair.
+            </p>
+            
+            <p className="text-xl">
+              Especially since this is a resource you'll keep and refer back to whenever you need.
+            </p>
+            
+            <p className="text-xl font-semibold">
+              But now, as we've been through this together…
+            </p>
+            
+            <p className="text-xl">
+              It feels like we have a connection.
+            </p>
+            
+            <p className="text-xl">
+              Because I've helped many in your shoes…
+            </p>
+            
+            <p className="text-xl">
+              People who are happier and more secure financially.
+            </p>
+            
+            <p className="text-xl">
+              And I've also seen others think that even <span id="regularPrice2" className="font-bold">[[calculate 11.11 multiplied by 2. Show the result]]</span> is too steep to pay for such clarity and peace.
+            </p>
+            
+            <p className="text-xl">
+              And they miss out on exactly the kind of financial freedom they're seeking
+            </p>
+            
+            <p className="text-xl font-bold">
+              I don't want that for you.
+            </p>
+            
+            <p className="text-xl">
+              That's why today, I am offering it for even less at just <span id="originalPrice" className="font-bold">[[calculate 11.11 plus $200]]</span>.
+            </p>
+            
+            <p className="text-xl font-semibold">
+              But to thank you for your time today…
+            </p>
+            
+            <p className="text-xl font-semibold">
+              And because it's clear you're ready for this transformation…
+            </p>
+            
+            <p className="text-xl font-bold">
+              If you act now during this special offer…
+            </p>
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Special Limited-Time Offer</h2>
-          <p className="text-lg text-gray-300">
-            Get instant access to The Game Changer book and exclusive bonuses today
-          </p>
-        </div>
 
-        <div className="max-w-5xl mx-auto">
-          <div className="bg-gradient-to-br from-blue-900/40 to-purple-900/40 rounded-2xl overflow-hidden border border-white/10">
-            <div className="grid md:grid-cols-2 gap-8 p-8">
-              <div>
-                <div className="relative mb-8">
-                  <img 
-                    src="path-to-your-book-cover.jpg"
-                    alt="The Game Changer Book"
-                    className="rounded-lg shadow-2xl transform transition-transform hover:scale-105"
-                  />
-                  <div className="absolute -top-4 -right-4 bg-gradient-to-r from-orange-500 to-red-500 text-white font-bold py-2 px-4 rounded-full transform rotate-12">
-                    Save 88%
-                  </div>
-                </div>
+          {/* Price Box */}
+          <div className="bg-white/10 backdrop-blur-md rounded-lg p-8 mb-12 text-center">
+            <h3 className="text-4xl font-bold mb-6">You can get everything for 11.11.</h3>
+            
+            <p className="text-xl mb-6">
+              That means you're saving $11.11 now... before $29.99 off the usual price…
+            </p>
+            
+            <p className="text-xl mb-8">
+              Just to help you get started right now...plus:
+            </p>
 
-                <div className="bg-white/5 rounded-lg p-6 mb-8">
-                  <img 
-                    src="path-to-old-vs-new-way.jpg"
-                    alt="The Old Way vs The New Way"
-                    className="rounded-lg mb-4"
-                  />
+            {/* Bonuses */}
+            <div className="grid md:grid-cols-2 gap-8 mb-12">
+              {bonuses.map((bonus, index) => (
+                <div key={index} className="bg-black/30 rounded-lg p-6">
+                  <img src={bonus.image} alt={bonus.title} className="w-full h-48 object-cover rounded-lg mb-4" />
+                  <h4 className="text-xl font-bold mb-2">{bonus.title}</h4>
+                  <p className="text-yellow-400 font-bold mb-2">Value: {bonus.value}</p>
+                  <p className="text-gray-300">{bonus.description}</p>
                 </div>
-              </div>
-              
-              <div className="text-white">
-                <div className="mb-8">
-                  <div className="text-4xl font-bold mb-4">
-                    <span className="line-through text-gray-500 text-2xl mr-2">$97</span>
-                    <span className="text-orange-500">$11.11</span>
-                  </div>
-                  <p className="text-gray-300">One-time payment - Lifetime access</p>
-                </div>
-
-                <div className="space-y-6 mb-8">
-                  <h3 className="text-xl font-bold flex items-center">
-                    <Gift className="h-5 w-5 mr-2 text-orange-500" />
-                    Exclusive Bonuses ($850 Value)
-                  </h3>
-                  {bonuses.map((bonus, index) => (
-                    <div key={index} className="bg-white/5 rounded-lg overflow-hidden">
-                      <img 
-                        src={bonus.image}
-                        alt={bonus.title}
-                        className="w-full h-32 object-cover"
-                      />
-                      <div className="p-4">
-                        <div className="flex justify-between items-start mb-2">
-                          <h4 className="font-semibold">{bonus.title}</h4>
-                          <span className="text-orange-500 font-bold">{bonus.value}</span>
-                        </div>
-                        <p className="text-sm text-gray-400">{bonus.description}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                <Button primary fullWidth className="text-lg py-4 mb-4">
-                  Get Instant Access Now
-                </Button>
-
-                <div className="flex items-center justify-center text-sm text-gray-400 space-x-4">
-                  <div className="flex items-center">
-                    <CheckCircle className="h-4 w-4 text-green-500 mr-1" />
-                    <span>Secure Payment</span>
-                  </div>
-                  <div className="flex items-center">
-                    <CheckCircle className="h-4 w-4 text-green-500 mr-1" />
-                    <span>14-Day Guarantee</span>
-                  </div>
-                </div>
-              </div>
+              ))}
             </div>
+
+            {/* Guarantee */}
+            <div className="bg-green-600/20 border-2 border-green-400 rounded-lg p-6 mb-8">
+              <h4 className="text-2xl font-bold mb-4">7-Day Money Back Guarantee</h4>
+              <p className="text-lg">
+                And remember, if you're not happy with the outcome, we've got your back with our 7-day money-back guarantee.
+              </p>
+              <p className="text-lg mt-4">
+                This way, you'll have the chance to see firsthand how impactful this can be.
+              </p>
+            </div>
+
+            {/* Additional Content */}
+            <div className="space-y-4 text-lg mb-8">
+              <p>
+                Soon enough, you'll notice progress and start moving towards your goals.
+              </p>
+              <p>
+                Your worries will start to ease as you see results, and you'll feel empowered to take charge of your life.
+              </p>
+              <p>
+                We've had a lot of happy customers already.
+              </p>
+              <p>
+                If things don't work out or if you're not seeing results as quickly as you'd like, just drop me an email and I'll refund you.
+              </p>
+              <p className="font-bold">
+                No hassle.
+              </p>
+            </div>
+
+            {/* CTA Button */}
+            <a 
+              href="https://buy.stripe.com/test_8wM16KcnC7dh4vi144"
+              className="inline-flex items-center bg-gradient-to-r from-yellow-400 to-orange-500 text-gray-900 font-bold py-4 px-8 rounded-full text-xl hover:from-yellow-300 hover:to-orange-400 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+            >
+              Get Instant Access for $11.11
+            </a>
           </div>
         </div>
       </div>
