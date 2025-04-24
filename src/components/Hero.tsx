@@ -1,20 +1,26 @@
 import React from 'react';
+// Asegúrate que el componente Button exista y funcione, o reemplázalo por un <button> normal
 import { Button } from './Button'; 
-import { ArrowRight, Target, Volume2 } from 'lucide-react'; // Importamos Volume2 para el icono
+// Importamos los iconos necesarios
+import { ArrowRight, Target, Volume2 } from 'lucide-react'; 
+// Importamos el componente de video estable (el que usa iframe básico)
 import VideoPlayer from './VideoPlayer'; 
 
 const Hero: React.FC = () => {
+  // IDs para el video de Vimeo
   const vimeoVideoId = "1078146633"; 
   const vimeoVideoHash = "1a73fb42a0"; 
 
   return (
     <section className="relative min-h-screen pt-24 pb-16 md:pt-32 md:pb-24 bg-[#0a0a0a] text-white overflow-hidden">
-      {/* Background Overlay */}
+      {/* Overlay de fondo */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/50 to-[#0a0a0a] z-10"></div>
       
+      {/* Contenido principal centrado */}
       <div className="container mx-auto px-4 md:px-8 relative z-20">
         <div className="max-w-5xl mx-auto text-center mb-12">
-          {/* Banner superior */}
+          
+          {/* Banner superior de la oferta */}
           <div className="inline-flex items-center bg-gradient-to-r from-orange-500 to-red-600 text-white text-sm font-bold px-6 py-3 rounded-full mb-8">
             <Target className="h-4 w-4 mr-2" />
             <span>For Coaches, Consultants & Service Providers Looking To Scale To 7 Figures In 2025</span>
@@ -31,19 +37,20 @@ const Hero: React.FC = () => {
             <span className="block mt-4 text-orange-500">...Without Wasting Thousands On Ads, Posting Content Every Day, Or Sending Cold DMs - Or Your Money Back!</span>
           </p>
 
-          {/* ===== NUEVO BANNER ENCIMA DEL VIDEO ===== */}
-          <div className="max-w-4xl mx-auto mb-4"> {/* Ajusta el margen inferior (mb-4) si es necesario */}
+          {/* ===== NUEVO BANNER/CARTEL ENCIMA DEL VIDEO ===== */}
+          <div className="max-w-4xl mx-auto mb-4"> {/* Contenedor para centrar y dar margen inferior */}
             <div className="inline-flex items-center justify-center bg-gray-800/80 backdrop-blur-sm text-white text-base font-semibold px-5 py-3 rounded-lg border border-white/20 shadow-lg">
+              {/* Icono de volumen */}
               <Volume2 className="h-5 w-5 mr-3 text-green-400" /> 
+              {/* Texto del cartel */}
               <span>CLICK THE VIDEO BELOW TO PLAY (SOUND ON!)</span>
             </div>
           </div>
-          {/* ========================================= */}
+          {/* =============================================== */}
 
 
-          {/* Video Player de Vimeo (iframe básico) */}
+          {/* Video Player de Vimeo (debe usar el iframe básico estable) */}
           <div className="max-w-4xl mx-auto mb-12">
-            {/* Asegúrate que VideoPlayer.tsx tenga el código del iframe básico estable */}
             <VideoPlayer videoId={vimeoVideoId} videoHash={vimeoVideoHash} />
           </div>
 
@@ -51,6 +58,7 @@ const Hero: React.FC = () => {
           <div className="bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-2xl p-8 mb-12 backdrop-blur-sm border border-white/10">
             <div className="text-3xl font-bold mb-4">Special Launch Price: Only $11.11</div>
             <p className="text-xl text-gray-300 mb-6">Save $85.89 Today - Regular Price $97</p>
+            {/* Botón de llamada a la acción */}
             <Button primary className="group text-lg px-8 py-4">
               Get Instant Access Now
               <ArrowRight className="ml-2 h-5 w-5 transform transition-transform group-hover:translate-x-1" />
