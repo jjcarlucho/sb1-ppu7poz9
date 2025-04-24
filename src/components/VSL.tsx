@@ -6,24 +6,14 @@ const VSL: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           <div className="relative aspect-video bg-gray-900 rounded-lg overflow-hidden shadow-2xl">
-            {/* Video Placeholder - Replace with actual video embed */}
+            {/* Vimeo Video Embed */}
             <iframe
               className="absolute top-0 left-0 w-full h-full"
-              src="https://player.vimeo.com/video/YOUR_VIDEO_ID?autoplay=1&color=ff9933&title=0&byline=0&portrait=0"
+              src="https://player.vimeo.com/video/1078146633?autoplay=1&color=ff9933&title=0&byline=0&portrait=0"
               frameBorder="0"
-              allow="autoplay; fullscreen"
+              allow="autoplay; fullscreen; picture-in-picture"
               allowFullScreen
             ></iframe>
-            
-            {/* Overlay that appears before video plays */}
-            <div className="absolute inset-0 flex items-center justify-center bg-black/50">
-              <button className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-4 px-8 rounded-full flex items-center gap-2 transform hover:scale-105 transition-all">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
-                </svg>
-                WATCH NOW
-              </button>
-            </div>
           </div>
           
           {/* VSL Headline */}
