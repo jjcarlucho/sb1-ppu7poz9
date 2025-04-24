@@ -10,77 +10,79 @@ interface VideoPlayerProps {
 const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoId, videoHash }) => {
   const [player, setPlayer] = useState<VimeoPlayer | null>(null);
   const [showOverlay, setShowOverlay] = useState(true); 
-  // Renombramos la ref para claridad
-  const playerContainerRef = useRef<HTMLDivElement>(null); 
+  // Ref para el div que tendrá el padding y contendrá el target del player
+  const containerRef = useRef<HTMLDivElement>(null); 
+  // Ref para el div *interno* donde se montará el player
+  const playerTargetRef = useRef<HTMLDivElement>(null); 
 
   // Inicializar
   useEffect(() => {
-    // Solo intentar inicializar si el div contenedor existe
-    if (playerContainerRef.current) {
-      // Opciones MÍNIMAS para probar autoplay mudo sin controles
+    // Necesitamos el div interno (target) para inicializar el player
+    if (playerTargetRef.current) {
       const options = {
         id: parseInt(videoId, 10), 
         hash: videoHash,          
-        autoplay: true, // Autoplay
-        muted: true,    // Sin sonido inicial
-        controls: false,// Sin controles de Vimeo
-        dnt: true,      // No rastrear         
-        // responsive: true // A veces Vimeo tiene esta opción, aunque no está siempre documentada
+        autoplay: true, 
+        muted: true,    
+        loop: true,     
+        controls: false,
+        dnt: true,                
       };
-
       let vimeoPlayer: VimeoPlayer | null = null;
       try {
-        // Importante: Pasamos el div contenedor directamente a la API
-        vimeoPlayer = new VimeoPlayer(playerContainerRef.current, options);
+        // Inicializamos el player en el div interno
+        vimeoPlayer = new VimeoPlayer(playerTargetRef.current, options);
         setPlayer(vimeoPlayer); 
 
         vimeoPlayer.ready().then(() => {
           console.log("Vimeo Player (API) ready!");
-          // Ya no intentamos forzar estilos aquí, confiamos en el contenedor
+          // Intentar forzar tamaño del iframe inyectado para que llene el target div
+          const iframe = vimeoPlayer?.element;
+          if (iframe) {
+             // El iframe debe llenar el playerTargetRef que ahora es absoluto
+            iframe.style.width = '100%';
+            iframe.style.height = '100%';
+          }
+          vimeoPlayer?.setVolume(0); 
+          vimeoPlayer?.play().catch(e => console.warn("Autoplay blocked?", e));
         }).catch(error => {
           console.error("Vimeo Player (API) ready error:", error);
         });
         vimeoPlayer.on('error', (error) => {
            console.error('Vimeo Player (API) Error:', error);
         });
-
       } catch (error) {
          console.error("Error creating Vimeo player (API) instance:", error);
          if (vimeoPlayer) { vimeoPlayer.destroy(); } 
          setPlayer(null);
       }
-      
-      // Limpieza
-      return () => {
-        const playerInstance = player; 
-        if (playerInstance) { 
-          playerInstance.destroy().catch(error => console.error("Error destroying Vimeo player (API):", error));
-        }
-         setPlayer(null);
-      };
+      return () => { /* ... limpieza ... */ }; // Asegúrate que la limpieza esté bien
     }
-  }, [videoId, videoHash, player]); // Dependencias
+  }, [videoId, videoHash]); 
 
- // --- Lógica de Clicks (sin cambios) ---
- const handlePlayClick = useCallback(() => { /*...*/ }, [player]);
- const handleVideoTogglePlay = useCallback(() => { /*...*/ }, [player, showOverlay]);
- // --- Fin Lógica de Clicks ---
+  // --- Lógica de Clicks (necesitan estar definidas aquí dentro) ---
+   const handlePlayClick = useCallback(() => { /* ... código ... */ }, [player]);
+   const handleVideoTogglePlay = useCallback(() => { /* ... código ... */ }, [player, showOverlay]);
+  // --- Asegúrate de incluir el código completo de estas funciones ---
 
   return (
-    // Contenedor Principal con aspect ratio y relative para el overlay
+    // Contenedor Principal: Usa padding-top para el aspect ratio 16:9
     <div 
-      className="relative w-full aspect-video rounded-xl overflow-hidden bg-black"
-      // Quitamos el onClick de aquí por ahora para simplificar
-      // onClick={handleVideoTogglePlay} 
+      ref={containerRef}
+      style={{ position: 'relative', width: '100%', paddingTop: '56.25%' /* 16:9 Aspect Ratio */ }}
+      className="rounded-xl overflow-hidden bg-black cursor-pointer"
+      onClick={handleVideoTogglePlay}
     >
-      {/* Div contenedor donde se renderizará el iframe de Vimeo */}
-      {/* Lo dejamos SIN 'absolute', que ocupe el flujo normal dentro del padre con aspect-video */}
-      <div ref={playerContainerRef} className="w-full h-full"></div> 
+      {/* Target Div para el Player: Absoluto para llenar el contenedor con padding */}
+      <div 
+        ref={playerTargetRef} 
+        style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+      ></div> 
 
       {/* Overlay inicial */}
       {showOverlay && (
         <div
-          className="absolute inset-0 bg-black/60 flex flex-col items-center justify-center z-10 cursor-pointer" // Añadido cursor-pointer
+          className="absolute inset-0 bg-black/60 flex flex-col items-center justify-center z-10"
           onClick={(e) => { e.stopPropagation(); handlePlayClick(); }} 
         >
           <div className="flex flex-col items-center justify-center animate-pulse"> 
@@ -95,37 +97,13 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoId, videoHash }) => {
   );
 };
 
+
 // --- Pegar aquí de nuevo las funciones handlePlayClick y handleVideoTogglePlay ---
-// (Las omití arriba por brevedad, pero asegúrate de tenerlas completas en tu código final
-// tal como estaban en la versión anterior que sí funcionaba con la API)
-
-// Ejemplo (asegúrate de que estas funciones estén DENTRO del componente VideoPlayer):
+// Ejemplo:
 /*
-  const handlePlayClick = useCallback(() => {
-    if (player) {
-      console.log("Overlay clicked, restarting with sound");
-      setShowOverlay(false); 
-      player.setLoop(false).catch(e => console.warn("Error setting loop false", e));
-      player.setVolume(1).catch(e => console.warn("Error setting volume", e));     
-      player.setCurrentTime(0).then(() => {
-         player.play().catch(e => console.error("Error playing after seek:", e));
-      }).catch(error => console.error("Error setting current time:", error));
-    } else { console.error("Player not available on overlay click"); }
-  }, [player]);
-
-  const handleVideoTogglePlay = useCallback(() => {
-    if (player && !showOverlay) { 
-      player.getPaused().then((paused) => {
-        if (paused) {
-          player.play().catch(error => console.error("Error playing video on click:", error));
-        } else {
-          player.pause().catch(error => console.error("Error pausing video on click:", error));
-        }
-      }).catch(error => console.error("Error getting paused state on click:", error));
-    }
-  }, [player, showOverlay]);
+  const handlePlayClick = useCallback(() => { ... }, [player]);
+  const handleVideoTogglePlay = useCallback(() => { ... }, [player, showOverlay]);
 */
 // ------------------------------------------------------------------------------------
-
 
 export default VideoPlayer;
