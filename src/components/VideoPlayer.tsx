@@ -1,29 +1,30 @@
 import React from 'react';
 
-// Nota: Ya no necesitamos las props videoId/videoHash aquí, 
-// pero las dejamos por si Hero.tsx las sigue pasando, para no causar error allí.
-// El ID real está dentro del código iframe que pegaste.
+// Mantenemos las props por compatibilidad con Hero.tsx, pero no las usamos aquí.
 interface VideoPlayerProps {
-  videoId: string;
-  videoHash?: string;
+  videoId: string; 
+  videoHash?: string; 
 }
 
 const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoId, videoHash }) => {
-  // Directamente devolvemos la estructura con el iframe de Vimeo
-  // Usamos Tailwind para el aspect ratio en lugar del div con padding style
+  
+  // Usamos la estructura DIV + IFRAME que proporcionó Vimeo
+  // Incluyendo el HASH (?h=...) en la URL del iframe
+  // Y adaptando los atributos para JSX
+
   return (
-    <div className="relative w-full aspect-video rounded-xl overflow-hidden bg-black">
-      {/* El código iframe que pegaste de Vimeo, adaptado a JSX */}
+    // El div exterior maneja el aspect ratio con padding-top
+    <div style={{ padding: '56.25% 0 0 0', position: 'relative' }} className="rounded-xl overflow-hidden"> 
       <iframe 
-        src="https://player.vimeo.com/video/1078146633?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" 
-        frameBorder="0" // 'frameborder' cambiado a 'frameBorder'
+        // URL corregida incluyendo el hash (h=1a73fb42a0) y parámetros originales
+        src="https://player.vimeo.com/video/1078146633?h=1a73fb42a0&badge=0&autopause=0&player_id=0&app_id=58479" 
+        frameBorder="0" // Atributo adaptado a JSX
         allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" 
-        allowFullScreen // 'allowfullscreen' cambiado a 'allowFullScreen'
-        style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} // 'style' string convertido a objeto
-        title="VSL JONATHAN(1) (1)" // Título del iframe
+        allowFullScreen // Atributo adaptado a JSX
+        style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} // Style como objeto
+        title="VSL JONATHAN(1) (1)" // Título importante para accesibilidad
       ></iframe>
-      {/* Nota: El <script src="https://player.vimeo.com/api/player.js"></script> que venía
-          con el código de Vimeo no es necesario aquí porque no estamos usando la API avanzada */}
+      {/* Quitamos el <script> que venía con el código de Vimeo */}
     </div>
   );
 };
