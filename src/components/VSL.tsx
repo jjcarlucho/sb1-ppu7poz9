@@ -1,6 +1,17 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 
 const VSL: React.FC = () => {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+
+  const handlePlayClick = () => {
+    if (iframeRef.current) {
+      // Remove muted parameter and restart the video with sound
+      iframeRef.current.src = "https://player.vimeo.com/video/1078146633?autoplay=1&color=ff9933&title=0&byline=0&portrait=0";
+      setIsPlaying(true);
+    }
+  };
+
   return (
     <section className="bg-gradient-to-b from-gray-900 to-black py-12">
       <div className="container mx-auto px-4">
@@ -32,12 +43,30 @@ const VSL: React.FC = () => {
             <div className="relative aspect-video bg-gray-900 rounded-xl overflow-hidden shadow-2xl border border-gray-800">
               {/* Vimeo Video Embed */}
               <iframe
+                ref={iframeRef}
                 className="absolute top-0 left-0 w-full h-full"
-                src="https://player.vimeo.com/video/1078146633?autopause=0&muted=1&background=1&color=ff9933&title=0&byline=0&portrait=0"
+                src="https://player.vimeo.com/video/1078146633?autoplay=1&muted=1&background=1&color=ff9933&title=0&byline=0&portrait=0"
                 frameBorder="0"
                 allow="autoplay; fullscreen; picture-in-picture"
                 allowFullScreen
               ></iframe>
+              
+              {/* Play Button Overlay */}
+              {!isPlaying && (
+                <div 
+                  className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 cursor-pointer transition-all hover:bg-opacity-40"
+                  onClick={handlePlayClick}
+                >
+                  <button 
+                    className="bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-400 hover:to-orange-400 text-white font-bold py-6 px-10 rounded-full flex items-center gap-4 transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-yellow-500/25"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
+                    </svg>
+                    <span className="text-2xl">PLAY NOW</span>
+                  </button>
+                </div>
+              )}
             </div>
           </div>
           
