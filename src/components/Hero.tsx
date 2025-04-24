@@ -29,7 +29,7 @@ const Hero: React.FC = () => {
 
           {/* VSL Video */}
           <div className="max-w-4xl mx-auto mb-12">
-            <VideoPlayer videoId="JwQNWQNtsj8" />
+          <VideoPlayer videoId="1078146633" videoHash="1a73fb42a0" />
           </div>
 
           <div className="bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-2xl p-8 mb-12 backdrop-blur-sm border border-white/10">
