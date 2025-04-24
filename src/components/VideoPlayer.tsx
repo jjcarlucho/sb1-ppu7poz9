@@ -1,38 +1,42 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import VimeoPlayer from '@vimeo/player'; // Importar el reproductor de Vimeo
-import { Play } from 'lucide-react'; // Asumo que sigues queriendo tu icono de Play personalizado
+import VimeoPlayer from '@vimeo/player'; 
+import { Play } from 'lucide-react'; 
 
 interface VideoPlayerProps {
-  videoId: string; // El ID numérico de Vimeo: 1078146633
-  videoHash?: string; // El hash opcional para videos privados: 1a73fb42a0
+  videoId: string; 
+  videoHash?: string; 
 }
 
 const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoId, videoHash }) => {
   const [player, setPlayer] = useState<VimeoPlayer | null>(null);
-  const [showOverlay, setShowOverlay] = useState(true); // Mostrar overlay al inicio
-  const playerRef = useRef<HTMLDivElement>(null); // Ref para el div QUE SERÁ el player
+  const [showOverlay, setShowOverlay] = useState(true); 
+  const playerRef = useRef<HTMLDivElement>(null); 
 
   // --- Inicializar el reproductor de Vimeo ---
   useEffect(() => {
     if (playerRef.current) {
+      // Opciones explícitas en lugar de 'background: true'
       const options = {
         id: parseInt(videoId, 10), 
         hash: videoHash,          
-        background: true, // Modo background (autoplay, muted, loop, no controls) - INTENTA OCULTAR BOTON NEGRO
-        muted: true,               
-        controls: false,           
-        dnt: true,                 
+        // width: 640, // No especificamos tamaño, debería adaptarse
+        autoplay: true, // Autoplay explícito
+        muted: true,    // Muted explícito
+        loop: true,     // Loop explícito para el inicio
+        controls: false,// Sin controles
+        dnt: true,                
       };
 
-      let vimeoPlayer: VimeoPlayer | null = null; // Variable local para la limpieza
+      let vimeoPlayer: VimeoPlayer | null = null;
       try {
         vimeoPlayer = new VimeoPlayer(playerRef.current, options);
+        setPlayer(vimeoPlayer); // Guardar instancia temprano
 
         vimeoPlayer.ready().then(() => {
           console.log("Vimeo Player (API) ready!");
-          // Asegurarse de que esté muteado y reproduciendo si background=true no fue suficiente
-          vimeoPlayer?.setVolume(0); 
-          vimeoPlayer?.play().catch(e => console.warn("Autoplay blocked?", e));
+          // Opcional: Forzar play/mute si autoplay/muted no funcionaron
+          // vimeoPlayer?.play().catch(e => console.warn("Autoplay blocked?", e));
+          // vimeoPlayer?.setVolume(0); 
         }).catch(error => {
           console.error("Vimeo Player (API) ready error:", error);
         });
@@ -41,54 +45,50 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoId, videoHash }) => {
            console.error('Vimeo Player (API) Error:', error);
         });
 
-        setPlayer(vimeoPlayer); // Guardar instancia en el estado
-
       } catch (error) {
          console.error("Error creating Vimeo player (API) instance:", error);
-         // Limpiar si la creación falló
-         if (vimeoPlayer) {
-            vimeoPlayer.destroy().catch(e => console.error("Error destroying on creation fail:", e));
-         }
+         if (vimeoPlayer) { vimeoPlayer.destroy(); } // Limpiar si falla creación
          setPlayer(null);
       }
 
-      // Limpieza al desmontar el componente
+      // Limpieza al desmontar
       return () => {
-        // Usar la instancia capturada en el closure
+        // Necesitamos obtener el player del estado aquí si la instancia local no está disponible
+        // O asegurarnos de que la referencia `vimeoPlayer` capturada sea la correcta.
+        // Para simplificar, intentemos destruir usando la referencia del estado al desmontar
+        // Esto requiere cuidado si el estado se actualiza asíncronamente.
+        // Mejorar: Usar una ref para la instancia si la limpieza es problemática.
+        
+        // Intento simple de limpieza usando la instancia capturada:
         const playerToDestroy = vimeoPlayer; 
-        if (playerToDestroy) {
-          console.log("Destroying Vimeo Player (API) instance");
-          playerToDestroy.destroy().catch(error => console.error("Error destroying Vimeo player (API):", error));
-          setPlayer(null); 
-        }
+         if (playerToDestroy) {
+           console.log("Destroying Vimeo Player (API) instance");
+           playerToDestroy.destroy().catch(error => console.error("Error destroying Vimeo player (API):", error));
+         }
       };
     }
-  }, [videoId, videoHash]); // Dependencias: reinicializar si cambian
+  }, [videoId, videoHash]); 
 
   // --- Manejar el clic en el overlay ---
   const handlePlayClick = useCallback(() => {
     if (player) {
       console.log("Overlay clicked, restarting with sound");
-      setShowOverlay(false); // Ocultar overlay
+      setShowOverlay(false); 
       player.setLoop(false).catch(e => console.warn("Error setting loop false", e));
       player.setVolume(1).catch(e => console.warn("Error setting volume", e));     
       player.setCurrentTime(0).then(() => {
          player.play().catch(e => console.error("Error playing after seek:", e));
       }).catch(error => console.error("Error setting current time:", error));
-    } else {
-        console.error("Player not available on overlay click");
-    }
+    } else { console.error("Player not available on overlay click"); }
   }, [player]);
 
   // --- Manejar clic en el video para pausar/reanudar ---
   const handleVideoTogglePlay = useCallback(() => {
-    if (player && !showOverlay) { // Solo funciona si el overlay no está visible
+    if (player && !showOverlay) { 
       player.getPaused().then((paused) => {
         if (paused) {
-          console.log("Video clicked: Playing");
           player.play().catch(error => console.error("Error playing video on click:", error));
         } else {
-          console.log("Video clicked: Pausing");
           player.pause().catch(error => console.error("Error pausing video on click:", error));
         }
       }).catch(error => console.error("Error getting paused state on click:", error));
@@ -100,17 +100,14 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoId, videoHash }) => {
       className="relative w-full aspect-video rounded-xl overflow-hidden bg-black cursor-pointer"
       onClick={handleVideoTogglePlay} 
     >
-      {/* Div donde se montará el player de Vimeo */}
-      <div ref={playerRef} className="w-full h-full"></div>
+      {/* Div donde se montará el player de Vimeo - Aseguramos tamaño */}
+      <div ref={playerRef} className="absolute inset-0 w-full h-full"></div> 
 
       {/* Overlay personalizado */}
       {showOverlay && (
         <div
           className="absolute inset-0 bg-black/60 flex flex-col items-center justify-center z-10"
-          onClick={(e) => { 
-            e.stopPropagation(); 
-            handlePlayClick(); 
-          }} 
+          onClick={(e) => { e.stopPropagation(); handlePlayClick(); }} 
         >
           <div className="flex flex-col items-center justify-center animate-pulse"> 
             <div className="bg-white/90 rounded-full p-6 mb-4 transform transition-all hover:scale-110">
