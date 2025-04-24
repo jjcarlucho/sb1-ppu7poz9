@@ -1,96 +1,91 @@
 import React from 'react';
-import { CheckCircle, Clock, Gift, ArrowRight } from 'lucide-react';
+import { Star, Shield, Zap, ArrowRight, CheckCircle } from 'lucide-react';
 
 const Hero: React.FC = () => {
-  const bonuses = [
-    {
-      title: "Your Wish Is Your Command Audios",
-      value: "$500",
-      description: "Legendary mindset and manifestation audios.",
-      image: "https://images.unsplash.com/photo-1511379938547-c1f69419868d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-    },
-    {
-      title: "TFT Course",
-      value: "$300",
-      description: "Release subconscious blocks and emotions.",
-      image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-    }
-  ];
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black">
-      <div className="container mx-auto px-4 py-16">
-        <div className="text-center text-white">
+    <section className="relative bg-gradient-to-b from-neutral-900 to-neutral-800 py-16 md:py-24 overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+        }}></div>
+      </div>
+
+      <div className="container mx-auto px-4 relative">
+        <div className="max-w-5xl mx-auto text-center">
+          {/* Pre-headline */}
+          <div className="flex items-center justify-center gap-2 mb-6">
+            <Star className="w-5 h-5 text-amber-400 fill-amber-400" />
+            <p className="text-amber-400 font-semibold uppercase tracking-wider">
+              The #1 Knowledge-to-Income System
+            </p>
+            <Star className="w-5 h-5 text-amber-400 fill-amber-400" />
+          </div>
+
           {/* Main Headline */}
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-            How to make more money from every page you write without losing your passion or resorting to jobs you hate just to pay the bills.
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+            Turn Your Knowledge Into
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-amber-200">
+              $5,000+ Monthly Income
+            </span>
+            With Just ONE Book
           </h1>
-          
+
           {/* Subheadline */}
-          <p className="text-xl md:text-2xl mb-8 text-gray-300">
-            It's a strategy I developed that helps you captivate even the most skeptical readers...
+          <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
+            The proven step-by-step system that's helped 1,847+ authors monetize their expertise—without being a marketing expert or spending thousands on advertising
           </p>
-          <p className="text-xl md:text-2xl mb-8 text-gray-300">
-            ...and guide them to whatever offer you have.
-          </p>
-          
-          {/* Key Message */}
-          <div className="bg-gradient-to-r from-yellow-600/20 to-orange-600/20 backdrop-blur-sm rounded-xl p-8 mb-12 max-w-3xl mx-auto border border-yellow-500/30">
-            <p className="text-xl md:text-2xl mb-4 font-semibold text-yellow-400">
-              And the best part?
-            </p>
-            <p className="text-xl md:text-2xl mb-4 text-white">
-              You only need one BOOK to transform your knowledge into a steady income...just one.
-            </p>
-            <p className="text-lg text-gray-300">
-              I'll explain how it works in a moment...so keep reading...
-            </p>
-          </div>
 
-          {/* CTA Button */}
-          <a 
-            href="#offer" 
-            className="inline-flex items-center bg-gradient-to-r from-yellow-500 to-orange-500 text-black font-bold py-4 px-8 rounded-full text-xl hover:from-yellow-400 hover:to-orange-400 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-yellow-500/25"
-          >
-            Start Your Journey Now <ArrowRight className="ml-2" size={24} />
-          </a>
-
-          {/* Trust Badges */}
-          <div className="mt-12 flex flex-wrap justify-center gap-6">
-            <div className="flex items-center bg-black/40 backdrop-blur-sm px-6 py-3 rounded-full border border-gray-700">
-              <CheckCircle className="text-green-400 mr-2" size={20} />
-              <span>Instant Download</span>
+          {/* Value Stack */}
+          <div className="grid md:grid-cols-3 gap-4 mb-12 max-w-3xl mx-auto">
+            <div className="bg-neutral-800/50 p-4 rounded-lg backdrop-blur-sm">
+              <CheckCircle className="w-6 h-6 text-green-400 mx-auto mb-2" />
+              <p className="text-sm text-gray-300">No Writing Experience Needed</p>
             </div>
-            <div className="flex items-center bg-black/40 backdrop-blur-sm px-6 py-3 rounded-full border border-gray-700">
-              <Clock className="text-blue-400 mr-2" size={20} />
-              <span>7-Day Money Back Guarantee</span>
+            <div className="bg-neutral-800/50 p-4 rounded-lg backdrop-blur-sm">
+              <CheckCircle className="w-6 h-6 text-green-400 mx-auto mb-2" />
+              <p className="text-sm text-gray-300">Works For Any Industry</p>
             </div>
-            <div className="flex items-center bg-black/40 backdrop-blur-sm px-6 py-3 rounded-full border border-gray-700">
-              <Gift className="text-purple-400 mr-2" size={20} />
-              <span>Special Bonuses Included</span>
+            <div className="bg-neutral-800/50 p-4 rounded-lg backdrop-blur-sm">
+              <CheckCircle className="w-6 h-6 text-green-400 mx-auto mb-2" />
+              <p className="text-sm text-gray-300">Results In 30 Days Or Less</p>
             </div>
           </div>
 
-          {/* Bonuses Preview */}
-          <div className="mt-20">
-            <h3 className="text-2xl font-bold mb-8 text-yellow-400">Today's Special Bonuses</h3>
-            <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-              {bonuses.map((bonus, index) => (
-                <div key={index} className="bg-black/40 backdrop-blur-sm rounded-xl p-6 hover:bg-black/60 transition-all duration-300 border border-gray-700">
-                  <div className="relative overflow-hidden rounded-lg mb-4">
-                    <img src={bonus.image} alt={bonus.title} className="w-full h-48 object-cover transform hover:scale-105 transition-transform duration-300" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                  </div>
-                  <h4 className="text-xl font-bold mb-2">{bonus.title}</h4>
-                  <p className="text-yellow-400 font-bold mb-2">Value: {bonus.value}</p>
-                  <p className="text-gray-300">{bonus.description}</p>
-                </div>
-              ))}
+          {/* CTA Section */}
+          <div className="mb-12">
+            <a 
+              href="#offer" 
+              className="inline-flex items-center bg-gradient-to-r from-amber-500 to-amber-400 text-white font-bold py-5 px-10 rounded-full text-xl hover:from-amber-400 hover:to-amber-300 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-amber-500/25 group"
+            >
+              YES! I Want The GameChanger System
+              <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={24} />
+            </a>
+            <p className="text-sm text-gray-400 mt-4">
+              <Shield className="w-4 h-4 inline-block mr-1" />
+              30-Day Money-Back Guarantee • Instant Access • Lifetime Updates
+            </p>
+          </div>
+
+          {/* Social Proof */}
+          <div className="border-t border-neutral-700 pt-12">
+            <p className="text-sm text-gray-400 mb-4">TRUSTED BY ENTREPRENEURS IN 47+ COUNTRIES</p>
+            <div className="flex flex-wrap justify-center items-center gap-8 opacity-60">
+              {/* Company logos placeholder */}
+              <div className="w-32 h-12 bg-gray-300/10 rounded"></div>
+              <div className="w-28 h-12 bg-gray-300/10 rounded"></div>
+              <div className="w-36 h-12 bg-gray-300/10 rounded"></div>
+              <div className="w-32 h-12 bg-gray-300/10 rounded"></div>
+              <div className="w-30 h-12 bg-gray-300/10 rounded"></div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+
+      {/* Decorative elements */}
+      <div className="absolute top-0 left-0 w-64 h-64 bg-amber-500/10 rounded-full filter blur-3xl"></div>
+      <div className="absolute bottom-0 right-0 w-64 h-64 bg-amber-500/10 rounded-full filter blur-3xl"></div>
+    </section>
   );
 };
 

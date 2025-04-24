@@ -10,7 +10,7 @@ const Benefits: React.FC = () => {
           <div className="text-center mb-16">
             <div className="bg-blue-600 text-white p-8 rounded-lg shadow-xl mb-8">
               <p className="text-xl md:text-2xl font-semibold">
-                The GameChanger es un ebook estratégico que te guía paso a paso para convertir tu experiencia en un libro que atrae clientes, paga tu publicidad y vende por vos, incluso mientras dormís. Ideal para coaches, mentores y creadores que quieren vivir de lo que saben sin sentirse esclavos del marketing.
+                The GameChanger is a strategic ebook that guides you step by step to turn your expertise into a book that attracts clients, pays for your advertising, and sells for you, even while you sleep. Ideal for coaches, mentors, and creators who want to live from what they know without feeling enslaved to marketing.
               </p>
             </div>
             
@@ -47,17 +47,17 @@ const Benefits: React.FC = () => {
 
             <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
               <Brain className="w-12 h-12 text-blue-600 mb-4" />
-              <h4 className="text-xl font-bold mb-3">Usá IA para acelerar lo que sabés, no para reemplazarlo.</h4>
+              <h4 className="text-xl font-bold mb-3">Use AI to accelerate what you know, not to replace it.</h4>
             </div>
 
             <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
               <Star className="w-12 h-12 text-blue-600 mb-4" />
-              <h4 className="text-xl font-bold mb-3">Ideal para coaches, mentores, terapeutas, creadores o freelancers.</h4>
+              <h4 className="text-xl font-bold mb-3">Ideal for coaches, mentors, therapists, creators or freelancers.</h4>
             </div>
 
             <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
               <DollarSign className="w-12 h-12 text-blue-600 mb-4" />
-              <h4 className="text-xl font-bold mb-3">Aprende a vender sin sentirte "vendedor".</h4>
+              <h4 className="text-xl font-bold mb-3">Learn to sell without feeling like a "salesperson".</h4>
             </div>
           </div>
 

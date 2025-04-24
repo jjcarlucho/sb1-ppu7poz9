@@ -8,15 +8,36 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&family=EB+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
       body {
         font-family: 'Inter', sans-serif;
-        background-color: #000;
+        background-color: #2c3330;
+        color: #ffffff;
       }
       
       h1, h2, h3, h4, h5, h6 {
-        font-family: 'Montserrat', sans-serif;
+        font-family: 'Playfair Display', serif;
+      }
+      
+      .serif-text {
+        font-family: 'EB Garamond', serif;
+      }
+      
+      .text-gold {
+        color: #ecc94b;
+      }
+      
+      .bg-gold {
+        background-color: #ecc94b;
+      }
+      
+      .border-gold {
+        border-color: #ecc94b;
+      }
+      
+      .text-shadow-gold {
+        text-shadow: 0 0 20px rgba(236, 201, 75, 0.5);
       }
       
       .animate-fade-in-up {
@@ -48,20 +69,20 @@
       }
       
       ::-webkit-scrollbar-track {
-        background: #111;
+        background: #1c2320;
       }
       
       ::-webkit-scrollbar-thumb {
-        background: #333;
+        background: #ecc94b;
         border-radius: 5px;
       }
       
       ::-webkit-scrollbar-thumb:hover {
-        background: #444;
+        background: #d4af37;
       }
     </style>
   </head>
-  <body class="antialiased bg-black">
+  <body class="antialiased">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
