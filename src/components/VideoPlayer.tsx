@@ -9,8 +9,9 @@ interface VideoPlayerProps {
 const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoId, videoHash }) => {
   
   // Construimos la URL del iframe básico de Vimeo dinámicamente usando las props
-  // Añadimos el hash (h=...) si se proporciona
+  // Asegúrate de que videoId sea "1078146633" y videoHash sea "1a73fb42a0" cuando uses este componente
   // Añadimos parámetros básicos para una apariencia limpia (muchos se controlan mejor desde Vimeo.com)
+  // Añadimos controls=0 aquí como un intento extra de ocultar controles, pero la configuración de Vimeo es la principal
   const vimeoSrc = `https://player.vimeo.com/video/${videoId}${videoHash ? `?h=${videoHash}` : ''}&badge=0&autopause=0&player_id=0&app_id=58479&controls=0&dnt=1`; 
 
   return (
@@ -30,6 +31,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoId, videoHash }) => {
         style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} 
         title="VSL Video Player" // Título descriptivo para accesibilidad
       ></iframe>
+      {/* No necesitamos el script de la API de Vimeo aquí */}
     </div>
   );
 };
