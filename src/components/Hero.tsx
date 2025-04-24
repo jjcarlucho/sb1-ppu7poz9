@@ -33,7 +33,8 @@ const Hero: React.FC = () => {
 
           {/* Video Player de Vimeo (usando la versión estable con iframe básico) */}
           <div className="max-w-4xl mx-auto mb-12">
-            <VideoPlayer videoId={vimeoVideoId} videoHash={vimeoVideoHash} />
+          <VideoPlayer videoId="1078146633" videoHash="1a73fb42a0" />
+
           </div>
 
           {/* Sección de Precio/Oferta */}
