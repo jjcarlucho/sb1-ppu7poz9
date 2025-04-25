@@ -3,88 +3,83 @@ import { Star, Shield, Zap, ArrowRight, CheckCircle } from 'lucide-react';
 
 const Hero: React.FC = () => {
   return (
-    <section className="relative bg-gradient-to-b from-neutral-900 to-neutral-800 py-16 md:py-24 overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-        }}></div>
+    <section className="relative min-h-screen bg-gradient-to-b from-[#1a1a1a] via-[#2c2c2c] to-[#1a1a1a] py-16 md:py-24 overflow-hidden">
+      {/* Animated background effects */}
+      <div className="absolute inset-0">
+        <div className="absolute top-0 -left-4 w-72 h-72 bg-gray-700 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-blob"></div>
+        <div className="absolute top-0 -right-4 w-72 h-72 bg-gray-600 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-blob animation-delay-2000"></div>
+        <div className="absolute -bottom-8 left-20 w-72 h-72 bg-gray-800 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-blob animation-delay-4000"></div>
       </div>
 
-      <div className="container mx-auto px-4 relative">
-        <div className="max-w-5xl mx-auto text-center">
-          {/* Pre-headline */}
-          <div className="flex items-center justify-center gap-2 mb-6">
-            <Star className="w-5 h-5 text-amber-400 fill-amber-400" />
-            <p className="text-amber-400 font-semibold uppercase tracking-wider">
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="max-w-5xl mx-auto">
+          {/* Pre-headline with animation */}
+          <div className="flex items-center justify-center gap-2 mb-8 animate-fade-in-down">
+            <Star className="w-5 h-5 text-gray-300 fill-gray-300 animate-pulse" />
+            <p className="text-gray-300 font-semibold uppercase tracking-wider bg-gray-800/50 px-4 py-1 rounded-full">
               The #1 Knowledge-to-Income System
             </p>
-            <Star className="w-5 h-5 text-amber-400 fill-amber-400" />
+            <Star className="w-5 h-5 text-gray-300 fill-gray-300 animate-pulse" />
           </div>
 
-          {/* Main Headline */}
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+          {/* Enhanced Main Headline */}
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-8 leading-tight text-center animate-fade-in">
             Turn Your Knowledge Into
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-amber-200">
+            <span className="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-gray-300 via-gray-400 to-gray-200 animate-gradient">
               $5,000+ Monthly Income
             </span>
-            With Just ONE Book
+            <span className="block text-3xl md:text-4xl lg:text-5xl mt-4 text-gray-200">
+              With Just ONE Book
+            </span>
           </h1>
 
-          {/* Subheadline */}
-          <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
-            The proven step-by-step system that's helped 1,847+ authors monetize their expertise—without being a marketing expert or spending thousands on advertising
+          {/* Enhanced Subheadline */}
+          <p className="text-xl md:text-2xl text-gray-300 text-center mb-12 max-w-3xl mx-auto leading-relaxed">
+            The proven step-by-step system that's helped <span className="text-gray-300 font-semibold">1,847+ authors</span> 
+            monetize their expertise — without being a marketing expert or spending thousands on advertising
           </p>
 
-          {/* Value Stack */}
-          <div className="grid md:grid-cols-3 gap-4 mb-12 max-w-3xl mx-auto">
-            <div className="bg-neutral-800/50 p-4 rounded-lg backdrop-blur-sm">
-              <CheckCircle className="w-6 h-6 text-green-400 mx-auto mb-2" />
-              <p className="text-sm text-gray-300">No Writing Experience Needed</p>
+          {/* Enhanced Benefits Grid */}
+          <div className="grid md:grid-cols-3 gap-6 mb-12 max-w-4xl mx-auto">
+            <div className="bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl border border-gray-700/50 transform hover:scale-105 transition-all duration-300">
+              <CheckCircle className="w-8 h-8 text-gray-300 mx-auto mb-4" />
+              <h3 className="text-white font-semibold text-lg mb-2 text-center">No Writing Experience Needed</h3>
+              <p className="text-gray-400 text-center text-sm">
+                Our system works even if you've never written before
+              </p>
             </div>
-            <div className="bg-neutral-800/50 p-4 rounded-lg backdrop-blur-sm">
-              <CheckCircle className="w-6 h-6 text-green-400 mx-auto mb-2" />
-              <p className="text-sm text-gray-300">Works For Any Industry</p>
+            <div className="bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl border border-gray-700/50 transform hover:scale-105 transition-all duration-300">
+              <CheckCircle className="w-8 h-8 text-gray-300 mx-auto mb-4" />
+              <h3 className="text-white font-semibold text-lg mb-2 text-center">Works For Any Industry</h3>
+              <p className="text-gray-400 text-center text-sm">
+                Adaptable to any niche or market
+              </p>
             </div>
-            <div className="bg-neutral-800/50 p-4 rounded-lg backdrop-blur-sm">
-              <CheckCircle className="w-6 h-6 text-green-400 mx-auto mb-2" />
-              <p className="text-sm text-gray-300">Results In 30 Days Or Less</p>
+            <div className="bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl border border-gray-700/50 transform hover:scale-105 transition-all duration-300">
+              <CheckCircle className="w-8 h-8 text-gray-300 mx-auto mb-4" />
+              <h3 className="text-white font-semibold text-lg mb-2 text-center">Results In 30 Days</h3>
+              <p className="text-gray-400 text-center text-sm">
+                Proven system for rapid results
+              </p>
             </div>
           </div>
 
-          {/* CTA Section */}
-          <div className="mb-12">
-            <a 
-              href="#offer" 
-              className="inline-flex items-center bg-gradient-to-r from-amber-500 to-amber-400 text-white font-bold py-5 px-10 rounded-full text-xl hover:from-amber-400 hover:to-amber-300 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-amber-500/25 group"
+          {/* Enhanced Main CTA */}
+          <div className="text-center mb-12">
+            <a
+              href="#offer"
+              className="inline-flex items-center bg-gradient-to-r from-[#ecc94b] to-[#d4af37] text-black font-bold py-6 px-12 rounded-full text-xl hover:from-[#f0d75e] hover:to-[#ecc94b] transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-[#ecc94b]/25 group animate-bounce-slow"
             >
               YES! I Want The GameChanger System
               <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={24} />
             </a>
-            <p className="text-sm text-gray-400 mt-4">
-              <Shield className="w-4 h-4 inline-block mr-1" />
+            <p className="text-sm text-gray-400 mt-4 flex items-center justify-center gap-2">
+              <Shield className="w-4 h-4" />
               30-Day Money-Back Guarantee • Instant Access • Lifetime Updates
             </p>
           </div>
-
-          {/* Social Proof */}
-          <div className="border-t border-neutral-700 pt-12">
-            <p className="text-sm text-gray-400 mb-4">TRUSTED BY ENTREPRENEURS IN 47+ COUNTRIES</p>
-            <div className="flex flex-wrap justify-center items-center gap-8 opacity-60">
-              {/* Company logos placeholder */}
-              <div className="w-32 h-12 bg-gray-300/10 rounded"></div>
-              <div className="w-28 h-12 bg-gray-300/10 rounded"></div>
-              <div className="w-36 h-12 bg-gray-300/10 rounded"></div>
-              <div className="w-32 h-12 bg-gray-300/10 rounded"></div>
-              <div className="w-30 h-12 bg-gray-300/10 rounded"></div>
-            </div>
-          </div>
         </div>
       </div>
-
-      {/* Decorative elements */}
-      <div className="absolute top-0 left-0 w-64 h-64 bg-amber-500/10 rounded-full filter blur-3xl"></div>
-      <div className="absolute bottom-0 right-0 w-64 h-64 bg-amber-500/10 rounded-full filter blur-3xl"></div>
     </section>
   );
 };

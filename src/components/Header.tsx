@@ -21,7 +21,9 @@ const formatTime = (totalSeconds: number): string => {
 const Header: React.FC = () => {
   // --- Countdown Logic ---
   const initialDurationInSeconds = 2 * 60 * 60; // 2 hours
-  const [remainingSeconds, setRemainingSeconds] = useState(initialDurationInSeconds);
+  const [remainingSeconds, setRemainingSeconds] = useState(
+    initialDurationInSeconds
+  );
 
   useEffect(() => {
     // Exit early if timer reaches zero
@@ -48,7 +50,9 @@ const Header: React.FC = () => {
           <div className="bg-gradient-to-r from-orange-500 to-red-600 rounded-full px-6 py-2">
             <div className="flex items-center text-white space-x-3">
               <Clock className="h-4 w-4 animate-pulse" />
-              <span className="text-sm font-medium">Special Offer Ends In:</span>
+              <span className="text-sm font-medium">
+                Special Offer Ends In:
+              </span>
               {/* --- Display the formatted time --- */}
               <span className="font-mono font-bold tracking-wider">
                 {formatTime(remainingSeconds)}
